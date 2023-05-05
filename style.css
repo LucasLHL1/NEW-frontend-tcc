@@ -37,7 +37,11 @@ a:hover>.text-menu {
 
 }
 
-
+a
+{
+  text-decoration: none;
+  color: white;
+}
 
 .toggle {
   background-color: #ECEAE9;
@@ -137,6 +141,16 @@ a:hover>.material-icons {
   background-color: #fcf7f2;
   box-shadow: 0px 0px 5px black;
   color: black;
+
+}
+#especialidade
+{
+  width: 200px;
+  text-align: start;
 }
 
-
+#data
+{
+  width: 200px;
+  text-align: start;
+}

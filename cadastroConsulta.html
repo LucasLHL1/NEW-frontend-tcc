@@ -16,13 +16,13 @@
 
 <body>
   <header class="flex-row content-vcenter content-space-between space-20 box">
-    
-    <img src="/imagens/menu-ico.png" class=""id="toggle" alt="" onclick="expand()">
+
+    <img src="/imagens/menu-ico.png" class="" id="toggle" alt="" onclick="expand()">
     <span style="cursor: default;">TCC</span>
-    
-    <img src="/imagens/person-ico.png" alt="" >
- 
-    
+
+    <img src="/imagens/person-ico.png" alt="">
+
+
   </header>
   <!--
   <div class="flex-row content-space-between space-20 box">
@@ -48,7 +48,7 @@
 
       <div class="items" id="items">
         <a href=""></a>
-        <a href="#">
+        <a href="consultas.html">
 
           <span class="material-icons blue">query_stats</span>
           <span class="selected-text ">CONSULTAS</span>
@@ -66,29 +66,52 @@
         </a>
       </div>
     </div>
-    
-    <span class="text-Indicator space-40">Consultas</span>
+
+    <span class="text-Indicator space-40">Cadastro de Consulta</span>
     <span></span>
     <span></span>
     <span></span>
     <div class="" style="margin-top: 40px;"></div>
     <span></span>
 
-    
+
 
 
   </div>
-  <div class="flex-row ">
-    <div class="cadastrarConsulta">
-        <span class="material-icons">vaccines</span> 
+  <div class="flex-row space-40 content-space-between">
+    <div></div>
+    <div class="cadastrarConsulta space-30 content-vcenter ">
+      <span class="material-icons" style="margin-right: 10px;">vaccines</span>
+      <select name="especialidade" id="especialidade">
+        <option value="null-value">Especialidade</option>
+        <option value="psicologo">Psicólogo</option>
+        <option value="cardiologista">Cardiologista</option>
+        <option value="neurologista">Neurologista</option>
+        <option value="ortopedista">Ortopedista</option>
+      </select>
+      <span class="material-icons" onclick="">calendar_month</span>
+      <select name="data" id="data" >
+        <option value="nulo">Selecione a data</option>
+      </select>
+      
     </div>
+    <div></div>
 
-</div>
+  </div>
   <footer class="flex-row content-center space-30 box" style="position:absolute; bottom: 0; width: 100%;">
     <span>Etec Antonio Devisate</span>
   </footer>
   <script>
+    let min = 1;
+    const d = new Date();
+    let diaAtual = (d.getDay());
+    let month = d.getMonth() + 1;
+    let anoAtual = (d.getFullYear());
     var state = false;
+
+    meses = ['', 'janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+    dias = ['', '31', '28', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
+
     function expand() {
       if (state == false) {
         document.getElementById("items").style.transform = 'scaleX(1)';
@@ -101,6 +124,47 @@
         state = false;
       }
     }
+
+    let especialidade = document.getElementById('especialidade');
+    let value = especialidade.options[especialidade.selectedIndex].value;
+    let select = document.getElementById('data');
+
+
+    function teste() {
+      diasMesAtual = dias[month]
+      for (i = diaAtual; i <= diasMesAtual; i++) {
+
+        var opcao = document.createElement('option');
+        if ((i <= 9) && (month <= 9)) {
+          opcao.value = '0' + i.toString() + '/' + month.toString() + '/' + anoAtual;
+          opcao.innerHTML = '0' + i.toString() + '/' + '0' + month.toString() + '/' + anoAtual;
+        }
+        else {
+          if ((month > 9) && (i <= 9)) {
+            opcao.value = '0' + i.toString() + '/' + month.toString() + '/' + anoAtual;
+            opcao.innerHTML = '0' + i.toString() + '/' + month.toString() + '/' + anoAtual;
+          }
+          else {
+            if ((month > 9) && (i >= 9)) {
+              opcao.value = i.toString() + '/' + month.toString() + '/' + anoAtual;
+              opcao.innerHTML = i.toString() + '/' + month.toString() + '/' + anoAtual;
+            }
+            else {
+              if ((month <= 9) && (i >= 9)) {
+                opcao.value = i.toString() + '/' + '0' + month.toString() + '/' + anoAtual;
+                opcao.innerHTML = i.toString() + '/' + '0' + month.toString() + '/' + anoAtual;
+              }
+            }
+          }
+        }
+
+
+        select.appendChild(opcao);
+
+
+      }
+    }
+      teste();
   </script>
 </body>
 
