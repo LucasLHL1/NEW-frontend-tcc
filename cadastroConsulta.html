@@ -24,22 +24,6 @@
 
 
   </header>
-  <!--
-  <div class="flex-row content-space-between space-20 box">
-
-    
-    <div class="">
-      <img src="/imagens/menu-ico.png" class="" id="toggle" alt="" onclick="expand()">
-    </div>
-    <div class="   " style="display: flex;">
-      
-    </div>
-    <div class=" flex-row   gap-10">
-      
-    </div>
-  </div>
-
--->
 
 
   <div class="flex-row content-space-between">
@@ -71,7 +55,8 @@
     <span></span>
     <span></span>
     <span></span>
-    <div class="" style="margin-top: 40px;"></div>
+    <div class="" style="margin-top: 4
+    0px;"></div>
     <span></span>
 
 
@@ -82,7 +67,7 @@
     <div></div>
     <div class="cadastrarConsulta space-30 content-vcenter ">
       <span class="material-icons" style="margin-right: 10px;">vaccines</span>
-      <select name="especialidade" id="especialidade">
+      <select name="especialidade" id="especialidade" style="border: 1px solid black;">
         <option value="null-value">Especialidade</option>
         <option value="psicologo">Psicólogo</option>
         <option value="cardiologista">Cardiologista</option>
@@ -90,10 +75,15 @@
         <option value="ortopedista">Ortopedista</option>
       </select>
       <span class="material-icons" onclick="">calendar_month</span>
-      <select name="data" id="data" >
+      <select name="data" id="data" style="border: 1px solid black;" >
         <option value="nulo">Selecione a data</option>
       </select>
-      
+      <span class="material-icons">
+        schedule
+      </span>
+      <select name="horario" id="horario" style="border: 1px solid black;" >
+        <option value="nulo">Selecione o horário</option>
+      </select>
     </div>
     <div></div>
 
@@ -104,7 +94,7 @@
   <script>
     let min = 1;
     const d = new Date();
-    let diaAtual = (d.getDay());
+    let diaAtual = (d.getDate());
     let month = d.getMonth() + 1;
     let anoAtual = (d.getFullYear());
     var state = false;
@@ -115,7 +105,6 @@
     function expand() {
       if (state == false) {
         document.getElementById("items").style.transform = 'scaleX(1)';
-        /*document.getElementById("toggle").style.boxShadow = '1px 1px 1px gray';*/
         state = true;
       }
       else {
@@ -125,12 +114,13 @@
       }
     }
 
-    let especialidade = document.getElementById('especialidade');
-    let value = especialidade.options[especialidade.selectedIndex].value;
     let select = document.getElementById('data');
+    let adicionarHoras = document.getElementById('horario');
 
 
-    function teste() {
+
+
+    function pegarDiaMes() {
       diasMesAtual = dias[month]
       for (i = diaAtual; i <= diasMesAtual; i++) {
 
@@ -164,7 +154,64 @@
 
       }
     }
-      teste();
+          
+          
+    function pegarHora()
+      {
+          agora = new Date;
+          hora = agora.getHours();
+          minutos = agora.getMinutes();
+          daquiMeiaHora = minutos+30
+        
+        if(minutos - 30 < 30)
+            {
+              hora = hora+1
+            }
+            novaHora = hora+1
+            
+
+          for(i = novaHora; i<18;i+=0.5)
+          {
+          
+            var opcao = document.createElement('option');
+
+              if(minutos <30)
+              {
+                minutos = 30;
+              }
+              else
+              {
+              if(minutos >=30)
+
+              {
+                minutos = '00';
+                hora = hora+1
+                
+              }
+            }
+              opcao.value = hora.toString() + ':' +  minutos.toString(); 
+              opcao.innerHTML = hora.toString() + ':' + minutos.toString(); 
+              if(minutos == 30)
+              {
+                novaHora = novaHora+1;
+              }
+            adicionarHoras.appendChild(opcao);
+            
+          }
+          if(daquiMeiaHora >60)
+            {
+              resto = daquiMeiaHora % 60
+              alert('Agora são: ' + hora+':'+minutos+ '\n Daqui meia hora serão: ' + novaHora +':'+resto)
+            }
+
+
+          
+      }
+    
+    pegarDiaMes();
+    pegarHora();
+
+
   </script>
 </body>
 
