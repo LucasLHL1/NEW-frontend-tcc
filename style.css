@@ -71,7 +71,7 @@ a
   transform: scaleX(0);
   transform-origin: left;
   transition: 0.5s;
-  position: absolute;
+  position: fixed;
   height: 100%;
 }
 
